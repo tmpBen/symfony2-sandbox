@@ -1,0 +1,3 @@
+BenBlogBundle:
+    resource: "@BenBlogBundle/Resources/config/routing.yml"
+    prefix: /blog

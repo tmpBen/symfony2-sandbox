@@ -1,0 +1,27 @@
+benblog_accueil:
+    path:      /{page}
+    defaults:  { _controller: BenBlogBundle:Blog:index, page: 1 }
+    requirements:
+        page:  \d*
+ 
+benblog_voir:
+    path:      /article/{id}
+    defaults:  { _controller: BenBlogBundle:Blog:voir }
+    requirements:
+        id:  \d+
+ 
+benblog_ajouter:
+    path:      /ajouter
+    defaults:  { _controller: BenBlogBundle:Blog:ajouter }
+ 
+benblog_modifier:
+    path:      /modifier/{id}
+    defaults:  { _controller: BenBlogBundle:Blog:modifier }
+    requirements:
+        id:  \d+
+ 
+benblog_supprimer:
+    path:      /supprimer/{id}
+    defaults:  { _controller: BenBlogBundle:Blog:supprimer }
+    requirements:
+        id:  \d+

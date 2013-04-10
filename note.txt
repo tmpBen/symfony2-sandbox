@@ -1,0 +1,53 @@
+Pas de panique, nous verrons tout cela dans les prochains chapitres.
+ Sachez juste pour l'instant que le rôle du Routeur, que nous avons brièvement vu sur le schéma du chapitre précédent, est de déterminer quel contrôleur exécuter en fonction de l'URL appelée. 
+ Pour cela, il utilise les routes.
+
+Chaque bundle dispose de ses propres routes. 
+Pour notre bundle fraîchement créé, vous pouvez les voir dans le fichier src/Sdz/BlogBundle/Resources/config/routing.yml. En l'occurrence il n'y en a qu'une seule :
+
+
+Routeur principal app/config/routing.yml
+votreBundle/Resources/config/routing.yml
+
+Enregistrer le bundle dans le noyau pour qu'il soit chargé, en modifiant le fichier app/AppKernel.php ;
+
+
+Clear dev env cache : 
+php app/console cache:clear
+
+Clear prod env cache : 
+php app/console cache:clear --env=prod
+
+
+    Le rôle du routeur est de déterminer quel route utiliser pour la requête courante.
+
+    Le rôle d'une route est d'associer une URL à une action du contrôleur.
+
+    Le rôle du contrôleur est de retourner au noyau un objet Response, qui contient la réponse HTTP à envoyer à l'internaute (page HTML ou redirection).
+
+    Le rôle des vues est de mettre en forme les données que le contrôleur lui donne, afin de former une page HTML, un flux RSS, un e-mail, etc.
+    
+    
+    	
+###############################################################
+Utiliser des « paramètres système »
+avec underscore _format
+
+Le paramètre {_format} : lorsqu'il est utilisé (comme notre paramètre {format}, ajoutez juste un underscore), alors un header avec le Content-type correspondant est envoyé. Exemple : vous appelez /blog/2011/mon-weekend.xml et le routeur va dire à l'objet Request que l'utilisateur demande du XML. Ainsi, l'objet Response enverra un header Content-type: application/xml. Vous n'avez plus à vous en soucier ! Depuis le contrôleur, vous pouvez récupérer ce format soit avec l'argument $_format comme n'importe quel autre argument, soit via la méthode getRequestFormat() de l'objet Request. Par exemple : <?php $this->get('request')->getRequestFormat().
+
+Le paramètre {_locale} : lorsqu'il est utilisé, il va définir la langue dans laquelle l'utilisateur souhaite obtenir la page. Ainsi, si vous avez défini des fichiers de traduction ou si vous employez des bundles qui en utilisent, alors les traductions dans la langue du paramètre {_locale} seront chargées. Pensez à mettre un requirements: sur la valeur de ce paramètre pour éviter que vos utili
+
+Pour ajouter un prefix
+Ajouter un préfixe lors de l'import de nos routes
+
+Vous avez remarqué que nous avons mis /blog au début du path de chacune de nos routes. En effet, on crée un blog, on aimerait donc que toutes les URL aient ce préfixe /blog. Au lieu de les répéter à chaque fois, Symfony2 vous propose de rajouter un préfixe lors de l'import du fichier de notre bundle.
+
+Modifiez donc le fichier app/config/routing.yml comme suit :
+
+###############################################################
+
+# app/config/routing.yml
+
+SdzBlogBundle:
+    resource:  "@SdzBlogBundle/Resources/config/routing.yml"
+    prefix:    /blog
