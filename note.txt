@@ -7,7 +7,7 @@ Pour notre bundle fraîchement créé, vous pouvez les voir dans le fichier src/
 
 
 Routeur principal app/config/routing.yml
-votreBundle/Resources/config/routing.yml
+myBundle/Resources/config/routing.yml
 
 Enregistrer le bundle dans le noyau pour qu'il soit chargé, en modifiant le fichier app/AppKernel.php ;
 
@@ -48,6 +48,22 @@ Modifiez donc le fichier app/config/routing.yml comme suit :
 
 # app/config/routing.yml
 
-SdzBlogBundle:
-    resource:  "@SdzBlogBundle/Resources/config/routing.yml"
-    prefix:    /blog
+Symfony 2 : add a prefix to bundle routes
+
+Edit app/config/routing.yml
+
+BenBlogBundle:
+    resource:  "@myBundle/Resources/config/routing.yml"
+    prefix:    /foobar
+ 
+ With this directive, all routes described in "@myBundle/Resources/config/routing.yml" are now prefixed with foobar.
+    
+    
+ #####################
+ {{ … }}affiche quelque chose ;
+
+{% … %}fait quelque chose ;
+
+{# … #} n'affiche rien et ne fait rien : c'est la syntaxe pour les commentaires, qui peuvent être sur plusieurs lignes
+
+
