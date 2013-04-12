@@ -67,3 +67,10 @@ BenBlogBundle:
 {# … #} n'affiche rien et ne fait rien : c'est la syntaxe pour les commentaires, qui peuvent être sur plusieurs lignes
 
 
+
+###############services
+$this->get('…') est strictement équivalent à $this->container->get('…')
+
+Pour avoir la liste des services disponibles, utilisez la commande php app/console container:debug.
+
+

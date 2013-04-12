@@ -8,15 +8,22 @@ class BlogController extends Controller
 {
 	public function indexAction()
 	{
-	  // …
+		    // On récupère le service
+	    $antispam = $this->container->get('ben_blog.antispam');
+	 
+	    $text = "Ce weekend était trop bien. Blabla… ben@mail.com, ben@mail.com, ben@mail.com, ben@mail.com, ben@mail.com";
+	    // Je pars du principe que $text contient le texte d'un message quelconque
+	    if ($antispam->isSpam($text)) {
+	      throw new \Exception('Votre message a été détecté comme spam !');
+	    }
 	 
 	  // Les articles :
 	  $articles = array(
 	    array(
-	      'titre'   => 'Mon weekend a Phi Phi Island !',
+	      'titre'   => 'Mon weekend a Phi Phi Island ! ',
 	      'id'      => 1,
 	      'auteur'  => 'winzou',
-	      'contenu' => 'Ce weekend était trop bien. Blabla…',
+	      'contenu' => 'Ce weekend était trop bien. Blabla… ben@mail.com, ben@mail.com, ben@mail.com, ben@mail.com, ben@mail.com',
 	      'date'    => new \Datetime()),
 	    array(
 	      'titre'   => 'Repetition du National Day de Singapour',
@@ -46,7 +53,7 @@ class BlogController extends Controller
 	    'id'      => 1,
 	    'titre'   => 'Mon weekend a Phi Phi Island !',
 	    'auteur'  => 'winzou',
-	    'contenu' => 'Ce weekend était trop bien. Blabla…',
+	    'contenu' => 'Ce weekend était trop bien. Blabla… Ce weekend était trop bien. Blabla… ben@mail.com, ben@mail.com, ben@mail.com, ben@mail.com, ben@mail.com',
 	    'date'    => new \Datetime()
 	  );
 	     

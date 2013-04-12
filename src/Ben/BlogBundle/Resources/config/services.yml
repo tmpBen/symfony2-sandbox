@@ -1,7 +1,11 @@
 parameters:
 #    ben_blog.example.class: Ben\BlogBundle\Example
 
-services:
+#services:
 #    ben_blog.example:
 #        class: %ben_blog.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+services:
+    ben_blog.antispam:
+        class: Ben\BlogBundle\Antispam\BenAntispam
+        arguments: [@mailer, %locale%, 3]
